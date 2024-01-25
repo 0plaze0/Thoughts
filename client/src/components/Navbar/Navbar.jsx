@@ -1,4 +1,4 @@
-import "./Navbar.css";
+import "./Navbar.scss";
 import { image } from "./../../constants";
 
 const Navbar = () => {
