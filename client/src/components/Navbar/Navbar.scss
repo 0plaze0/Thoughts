@@ -1,0 +1,24 @@
+.app__navbar {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+
+  background-color: var(--primary-color);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.app__navbar-logo {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+  height: auto;
+
+  img {
+    width: 100px;
+    height: auto;
+  }
+}

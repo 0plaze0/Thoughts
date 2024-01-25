@@ -9,7 +9,9 @@ const Navbar = () => {
       </div>
       <ul className="app__navbar-links">
         {["login", "register"].map((link) => (
-          <li key={link}>{link}</li>
+          <li key={`nav-${link}`}>
+            <a href={`#${link}`}>{link}</a>
+          </li>
         ))}
       </ul>
     </nav>
