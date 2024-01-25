@@ -22,15 +22,26 @@
   }
 
   &:hover {
+    background-color: #dceafc;
+
     img {
       filter: grayscale(0);
       transform: scale(101%);
     }
-    background-color: #dceafc;
   }
 
   @media screen and (max-width: 900px) {
     max-width: 80%;
+    padding: 0.5rem;
+  }
+  @media screen and (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+
+    padding: 1rem;
+    img {
+      filter: grayscale(0);
+    }
   }
 }
 
