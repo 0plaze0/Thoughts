@@ -1,5 +1,6 @@
 import "./Navbar.scss";
 import { image } from "./../../constants";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -10,7 +11,7 @@ const Navbar = () => {
       <ul className="app__navbar-links">
         {["login", "register"].map((link) => (
           <li key={`nav-${link}`}>
-            <a href={`#${link}`}>{link}</a>
+            <Link to={`/${link}`}>{link}</Link>
           </li>
         ))}
       </ul>
