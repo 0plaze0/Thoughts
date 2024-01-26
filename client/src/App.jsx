@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.scss";
 import { Navbar, Posts } from "./components";
 import Home from "./Layout/Home";
-import { Login } from "./pages";
+import { Login, Register } from "./pages";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Route path="/" element={<Home />}>
           <Route index element={<Posts />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<p>Register</p>} />
+          <Route path="/register" element={<Register />} />
         </Route>
       </Routes>
     </div>
