@@ -1,5 +1,19 @@
-const createUser = (req, res) => {
-  return res.status(200).send("hello");
+import User from "../model/userSchema.js";
+
+const createUser = async (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password)
+    return res.status(400).json({ message: "Please Enter valid data" });
+  try {
+    const newUser = {
+      username: username,
+      password: password,
+    };
+    const result = await User.create(newUser);
+    return res.status(200).json(result);
+  } catch (err) {
+    return res.status(err.status).json({ message: err.message });
+  }
 };
 
 export default { createUser };
