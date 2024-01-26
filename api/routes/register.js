@@ -1,9 +1,7 @@
 import { Router } from "express";
-
+import registerController from "../controller/registerController.js";
 const router = Router();
 
-router.route("/").get((req, res) => {
-  return res.send("message");
-});
+router.route("/").get(registerController.createUser);
 
 export { router };
