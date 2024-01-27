@@ -4,4 +4,4 @@ const router = Router();
 
 router.route("/").post(registerController.createUser);
 
-export { router };
+export default router;

@@ -7,13 +7,13 @@ const Posts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = api.get("/profiles");
+        const result = await api.get("/profiles", { withCredentials: true });
+        console.log(result.data);
       } catch (err) {
-        console.log(err.message);
+        console.log(err);
       }
-
-      fetchData();
     };
+    fetchData();
   }, []);
 
   return (

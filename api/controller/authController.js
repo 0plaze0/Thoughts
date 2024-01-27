@@ -16,7 +16,7 @@ const authUser = async (req, res) => {
     if (match) {
       const accessToken = await jwt.sign(
         { username, id: result._id },
-        process.env.ACCESS_TOKEN
+        process.env.ACCESS_TOKEN_SECRET
       );
 
       return res.status(200).cookie("access-token", accessToken).json("ok");
