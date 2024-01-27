@@ -1,18 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import { api } from "./../../services/api";
 import "./Navbar.scss";
 import { image } from "./../../constants";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../context/userContext";
 
 const Navbar = () => {
-  const [username, setUsername] = useState("hello");
+  const [username, setUsername] = useState("");
+  const { userInfo, setUserInfo } = useContext(UserContext);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await api.get("/profiles", { withCredentials: true });
-        console.log(result.username);
-        if (result) setUsername(result.username);
+        if (result) setUserInfo(result);
+        setUsername(userInfo.username);
       } catch (err) {
         console.log(err);
       }
@@ -28,7 +30,7 @@ const Navbar = () => {
         </Link>
       </div>
       <ul className="app__navbar-links">
-        {username ? (
+        {username && (
           <>
             {[username, "logout"].map((link) => (
               <li key={`nav-${link}`}>
@@ -36,7 +38,8 @@ const Navbar = () => {
               </li>
             ))}
           </>
-        ) : (
+        )}
+        {!username && (
           <>
             {["login", "register"].map((link) => (
               <li key={`nav-${link}`}>
