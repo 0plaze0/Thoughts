@@ -19,7 +19,10 @@ const authUser = async (req, res) => {
         process.env.ACCESS_TOKEN_SECRET
       );
 
-      return res.status(200).cookie("access-token", accessToken).json("ok");
+      return res.status(200).cookie("access-token", accessToken).json({
+        id: result._id,
+        username,
+      });
     } else return res.sendStatus(401);
   } catch (err) {
     console.log("hello");

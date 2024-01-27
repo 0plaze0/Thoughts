@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { UserContext } from "../../context/userContext";
 import { api } from "../../services/api";
 import "./Login.scss";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { setUserInfo } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -21,6 +23,7 @@ const Login = () => {
         { withCredentials: true }
       );
       if (result.status === 200) {
+        setUserInfo(result.data);
         navigate("/");
       }
     } catch (err) {
