@@ -21,10 +21,12 @@ const Login = () => {
         { withCredentials: true }
       );
       if (result.status === 200) {
-        alert("User register succesfully");
-      } else alert("wrong credentials");
+        navigate("/");
+      }
     } catch (err) {
-      alert(err.message);
+      if (err.response.status === 401) {
+        alert("wrong credentials");
+      } else alert(err.message);
     }
   };
 

@@ -1,6 +1,21 @@
+import { useEffect } from "react";
+
+import { api } from "../../services/api";
 import "./Posts.scss";
 import { image } from "../../constants";
 const Posts = () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = api.get("/profiles");
+      } catch (err) {
+        console.log(err.message);
+      }
+
+      fetchData();
+    };
+  }, []);
+
   return (
     <div className="app__posts">
       {[1, 2, 3].map((item) => (
