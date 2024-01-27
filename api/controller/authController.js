@@ -1,6 +1,7 @@
 import User from "./../model/userSchema.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import "dotenv/config.js";
 
 const authUser = async (req, res) => {
   const { username, password } = req.body;
@@ -21,6 +22,7 @@ const authUser = async (req, res) => {
       return res.status(200).cookie("access-token", accessToken).json("ok");
     } else return res.sendStatus(401);
   } catch (err) {
+    console.log("hello");
     console.log(err.message);
   }
   res.send(username);
