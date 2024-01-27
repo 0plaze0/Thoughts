@@ -1,6 +1,24 @@
+import { useState } from "react";
+import { api } from "../../services/api";
 import "./Login.scss";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const result = await api.post("/login", {
+        username: username,
+        password: password,
+      });
+      if (result.status === 200) alert("User register succesfully");
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
   return (
     <div className="app__login">
       <div className="app__login-container">
@@ -13,6 +31,8 @@ const Login = () => {
             id="username"
             placeholder="username"
             autoComplete="off"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <label htmlFor="password">password</label>
           <input
@@ -20,8 +40,12 @@ const Login = () => {
             name="password"
             id="password"
             placeholder="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="button">Login</button>
+          <button type="button" onClick={handleSubmit}>
+            Login
+          </button>
         </form>
       </div>
     </div>

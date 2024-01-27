@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import connectDB from "./config/dbConn.js";
 import corsOptions from "./config/corsOptions.js";
 import { router as register } from "./routes/register.js";
+import { router as auth } from "./routes/auth.js";
 
 connectDB(process.env.DB_URI);
 const PORT = process.env.PORT || 5555;
@@ -17,6 +18,7 @@ app.use(express.json());
 
 //routes
 app.use("/register", register);
+app.use("/login", auth);
 
 mongoose.connection.once("open", () => {
   console.log("connect to mongodb");
