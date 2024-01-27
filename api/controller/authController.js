@@ -1,5 +1,6 @@
 import User from "./../model/userSchema.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const authUser = async (req, res) => {
   const { username, password } = req.body;
@@ -8,14 +9,20 @@ const authUser = async (req, res) => {
   try {
     const result = await User.findOne({ username: username }).exec();
     if (!result) return res.sendStatus(401);
-    //compare password
+
     const match = await bcrypt.compare(password, result.password);
 
     if (match) {
-      return res.sendStatus(200);
-    } else {
-      return res.sendStatus(401);
-    }
+      const accessToken = await jwt.sign(
+        { username, id: result._id },
+        process.env.ACCESS_TOKEN,
+        {
+          expiresIn: "30min",
+        }
+      );
+
+      return res.status(200).cookie("access-token", accessToken).json("ok");
+    } else return res.sendStatus(401);
   } catch (err) {
     console.log(err.message);
   }

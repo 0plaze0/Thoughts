@@ -9,10 +9,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await api.post("/login", {
-        username: username,
-        password: password,
-      });
+      const result = await api.post(
+        "/login",
+        {
+          username: username,
+          password: password,
+        },
+        { withCredentials: true }
+      );
       if (result.status === 200) alert("User register succesfully");
     } catch (err) {
       alert(err.message);
