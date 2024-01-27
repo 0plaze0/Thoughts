@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { api } from "../../services/api";
 import "./Login.scss";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +20,9 @@ const Login = () => {
         },
         { withCredentials: true }
       );
-      if (result.status === 200) alert("User register succesfully");
+      if (result.status === 200) {
+        alert("User register succesfully");
+      } else alert("wrong credentials");
     } catch (err) {
       alert(err.message);
     }
