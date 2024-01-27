@@ -1,21 +1,6 @@
-import { useEffect } from "react";
-
-import { api } from "../../services/api";
 import "./Posts.scss";
 import { image } from "../../constants";
 const Posts = () => {
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await api.get("/profiles", { withCredentials: true });
-        console.log(result.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, []);
-
   return (
     <div className="app__posts">
       {[1, 2, 3].map((item) => (
