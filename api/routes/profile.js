@@ -1,18 +1,8 @@
 import { Router } from "express";
-import jwt from "jsonwebtoken";
-import "dotenv/config.js";
+import profileController from "../controller/profileController.js";
 
 const router = Router();
 
-router.route("/").get(async (req, res) => {
-  const token = req.cookies["access-token"];
-  try {
-    const result = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-    if (!result) return res.sendStatus(401);
-    return res.status(200).json(result);
-  } catch (err) {
-    return res.status(err.message);
-  }
-});
+router.route("/").get(profileController.getUser);
 
 export default router;
