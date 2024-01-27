@@ -14,7 +14,7 @@ const Register = () => {
         username: username,
         password: password,
       });
-      if (result.ok) alert("User register succesfully");
+      if (result.status === 200) alert("User register succesfully");
     } catch (err) {
       alert(err.message);
     }
