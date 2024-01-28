@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 
 import connectDB from "./config/dbConn.js";
 import corsOptions from "./config/corsOptions.js";
-import { register, auth, profile } from "./routes/index.js";
+import { register, auth, profile, logout } from "./routes/index.js";
 
 connectDB(process.env.DB_URI);
 const PORT = process.env.PORT || 5555;
@@ -20,6 +20,7 @@ app.use(cookieParser());
 //routes
 app.use("/register", register);
 app.use("/login", auth);
+app.use("/logout", logout);
 app.use("/profiles", profile);
 
 mongoose.connection.once("open", () => {

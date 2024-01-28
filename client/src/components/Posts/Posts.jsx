@@ -1,5 +1,6 @@
 import "./Posts.scss";
 import { image } from "../../constants";
+
 const Posts = () => {
   return (
     <div className="app__posts">
