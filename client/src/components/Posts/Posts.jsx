@@ -5,7 +5,7 @@ const Posts = () => {
   return (
     <div className="app__posts">
       {[1, 2, 3].map((item) => (
-        <div className="app__posts-container">
+        <div className="app__posts-container" key={item}>
           <div className="app__posts-img">
             <img src={image.post1} alt="post" />
           </div>

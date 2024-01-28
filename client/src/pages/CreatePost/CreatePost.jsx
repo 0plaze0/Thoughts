@@ -2,6 +2,8 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
+import { api } from "./../../services/api";
+
 import "./CreatPost.scss";
 const modules = {
   toolbar: [
@@ -39,17 +41,36 @@ const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
-  console.log(content);
+  const [file, setFile] = useState(null);
+
+  const createPost = async (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    data.set("title", title);
+    data.set("title", title);
+    data.set("content", content);
+    data.set("file", file[0]);
+    try {
+      const result = await api.post("/post", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="app__createPost">
-      <form className="app__createPost-form">
+      <form className="app__createPost-form" onSubmit={createPost}>
         <label htmlFor="title">Title</label>
         <input
           type="text"
           name="title"
           id="title"
           value={title}
-          onChange={(e) => setTitle}
+          onChange={(e) => setTitle(e.target.value)}
           placeholder="Title"
         />
         <label htmlFor="summary">summary</label>
@@ -58,10 +79,10 @@ const CreatePost = () => {
           name="summary"
           id="summary"
           value={summary}
-          onChange={(e) => setSummary}
+          onChange={(e) => setSummary(e.target.value)}
           placeholder="Summary"
         />
-        <input type="file" />
+        <input type="file" onChange={(e) => setFile(e.target.files)} />
         <ReactQuill
           className="app__createPost-content"
           value={content}
