@@ -9,18 +9,34 @@ import { UserContext } from "../../context/userContext";
 const Navbar = () => {
   // const [username, setUsername] = useState("");
   const { userInfo, setUserInfo } = useContext(UserContext);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await api.get("/profiles", { withCredentials: true });
-        if (result) setUserInfo(result);
+        if (result) setUserInfo(result.data);
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
   }, []);
-  const username = userInfo.username;
+  const username = userInfo?.username;
+  const logout = async () => {
+    try {
+      const result = await api.post(
+        "/logout",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+    } catch (err) {
+      console.log(err.message);
+    }
+    setUserInfo(null);
+  };
+
   return (
     <nav className="app__navbar">
       <div className="app__navbar-logo">
@@ -31,11 +47,12 @@ const Navbar = () => {
       <ul className="app__navbar-links">
         {username && (
           <>
-            {[username, "logout"].map((link) => (
-              <li key={`nav-${link}`}>
-                <Link to={`/${link}`}>{link}</Link>
-              </li>
-            ))}
+            <li>
+              <Link to="/createPost">{username}</Link>
+            </li>
+            <li>
+              <a onClick={logout}>logout</a>
+            </li>
           </>
         )}
         {!username && (
