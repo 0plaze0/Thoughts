@@ -47,7 +47,7 @@ const CreatePost = () => {
     e.preventDefault();
     const data = new FormData();
     data.set("title", title);
-    data.set("title", title);
+    data.set("summary", summary);
     data.set("content", content);
     data.set("file", file[0]);
     try {
