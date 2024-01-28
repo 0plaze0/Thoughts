@@ -53,6 +53,12 @@ const Navbar = () => {
             <li>
               <a onClick={logout}>logout</a>
             </li>
+            <li>
+              <Link to="/createPost">{username}</Link>
+            </li>
+            <li>
+              <a onClick={logout}>logout</a>
+            </li>
           </>
         )}
         {!username && (
