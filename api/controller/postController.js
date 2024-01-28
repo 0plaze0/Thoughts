@@ -22,5 +22,13 @@ const createPost = async (req, res) => {
     return res.status(err.response.status).json(err.message);
   }
 };
-
-export default { createPost };
+const getPost = async (req, res) => {
+  try {
+    const result = await Post.find({});
+    if (!result) return res.status(200).json("no data found");
+    return res.status(200).json(result);
+  } catch (err) {
+    return res.status(err.response.status).json(err.message);
+  }
+};
+export default { createPost, getPost };
