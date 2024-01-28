@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -43,7 +42,6 @@ const CreatePost = () => {
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
   const [file, setFile] = useState(null);
-  const navigate = useNavigate();
 
   const createPost = async (e) => {
     e.preventDefault();
@@ -58,9 +56,6 @@ const CreatePost = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      if (result.status === 200) {
-        navigate("/");
-      }
     } catch (err) {
       console.log(err);
     }
