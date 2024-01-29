@@ -50,11 +50,13 @@ const CreatePost = () => {
     data.set("summary", summary);
     data.set("content", content);
     data.set("file", file[0]);
+
     try {
       const result = await api.post("/post", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+        withCredentials: true,
       });
     } catch (err) {
       console.log(err);

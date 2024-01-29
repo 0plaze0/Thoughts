@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { format } from "date-fns";
 
 import { api } from "./../../services/api";
 import "./Posts.scss";
@@ -18,7 +19,7 @@ const Posts = () => {
     };
     fetchData();
   }, []);
-
+  console.log(post);
   return (
     <div className="app__posts">
       {post.map((item, index) => (
@@ -32,7 +33,9 @@ const Posts = () => {
               <a className="app__posts-author" href="#">
                 Lorem ipsum
               </a>
-              <time>2024-01-24 22:36</time>
+              <time>
+                {format(new Date(item.createdAt), "dd-mm-yyyy HH:mm")}
+              </time>
             </div>
             <p>{item.summary}</p>
           </div>

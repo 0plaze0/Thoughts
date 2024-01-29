@@ -47,12 +47,6 @@ const Navbar = () => {
       <ul className="app__navbar-links">
         {username && (
           <>
-            <li className="user__icon">
-              <a>{username}</a>
-            </li>
-            <li>
-              <a onClick={logout}>logout</a>
-            </li>
             <li>
               <Link to="/createPost">{username}</Link>
             </li>
