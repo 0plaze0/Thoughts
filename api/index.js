@@ -6,7 +6,14 @@ import cookieParser from "cookie-parser";
 
 import connectDB from "./config/dbConn.js";
 import corsOptions from "./config/corsOptions.js";
-import { register, auth, profile, logout, post } from "./routes/index.js";
+import {
+  register,
+  auth,
+  profile,
+  logout,
+  post,
+  uploads,
+} from "./routes/index.js";
 
 connectDB(process.env.DB_URI);
 const PORT = process.env.PORT || 5555;
@@ -16,6 +23,9 @@ const app = express();
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.static("uploads"));
+
+app.use("/uploads", uploads);
 
 //routes
 app.use("/register", register);

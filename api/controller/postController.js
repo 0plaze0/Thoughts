@@ -32,11 +32,14 @@ const createPost = async (req, res) => {
 };
 const getPost = async (req, res) => {
   try {
-    const result = await Post.find({});
+    const result = await Post.find()
+      .populate("author", ["username"])
+      .sort({ createdAt: -1 })
+      .limit(20);
     if (!result) return res.status(200).json("no data found");
     return res.status(200).json(result);
   } catch (err) {
-    return res.status(err.response.status).json(err.message);
+    return res.status(500).json(err.message);
   }
 };
 export default { createPost, getPost };

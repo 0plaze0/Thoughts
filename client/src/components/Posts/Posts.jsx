@@ -19,19 +19,19 @@ const Posts = () => {
     };
     fetchData();
   }, []);
-  console.log(post);
+
   return (
     <div className="app__posts">
       {post.map((item, index) => (
         <div className="app__posts-container" key={index}>
           <div className="app__posts-img">
-            <img src={image.post1} alt="post" />
+            <img src={"http://localhost:5555/" + item.cover} alt="post" />
           </div>
           <div className="app__posts-text">
             <h2>{item.title}</h2>
             <div className="app__posts-info">
               <a className="app__posts-author" href="#">
-                Lorem ipsum
+                {item.author.username}
               </a>
               <time>
                 {format(new Date(item.createdAt), "dd-mm-yyyy HH:mm")}
