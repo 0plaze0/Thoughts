@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.scss";
 
 import Home from "./Layout/Home";
-import { CreatePost, Login, Register, Posts } from "./pages";
+import { CreatePost, Login, Register, Posts, Article } from "./pages";
 import { UserProvider } from "./context/userContext";
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}>
             <Route index element={<Posts />} />
+            <Route path="/article/:id" element={<Article />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/createPost" element={<CreatePost />} />

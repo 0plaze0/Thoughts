@@ -7,5 +7,5 @@ router
   .route("/")
   .get(postController.getPost)
   .post(upload.single("file"), postController.createPost);
-
+router.route("/:id").get(postController.getArticle);
 export default router;

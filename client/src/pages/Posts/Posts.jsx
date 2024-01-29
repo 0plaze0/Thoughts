@@ -21,9 +21,15 @@ const Posts = () => {
 
   return (
     <div className="app__posts">
-      {post.length &&
-        post.map((item) => <PostCard key={item._id} item={item} />)}
-      {!post.length && <h1>No article present.....</h1>}
+      {post.length ? (
+        <>
+          {post.map((item) => (
+            <PostCard key={item._id} item={item} />
+          ))}
+        </>
+      ) : (
+        <h1>No article present.....</h1>
+      )}
     </div>
   );
 };

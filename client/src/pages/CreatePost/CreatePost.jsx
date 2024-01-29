@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useNavigate } from "react-router-dom";
 
 import { api } from "./../../services/api";
 
@@ -42,6 +43,7 @@ const CreatePost = () => {
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
   const [file, setFile] = useState(null);
+  const navigate = useNavigate();
 
   const createPost = async (e) => {
     e.preventDefault();
@@ -58,6 +60,7 @@ const CreatePost = () => {
         },
         withCredentials: true,
       });
+      if (result.status === 200) navigate("/");
     } catch (err) {
       console.log(err);
     }
