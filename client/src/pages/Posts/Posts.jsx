@@ -6,6 +6,7 @@ import { PostCard } from "../../components";
 
 const Posts = () => {
   const [post, setPost] = useState([]);
+  const [uri, setUri] = useState(import.meta.env.VITE_BASE_API);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,7 +25,7 @@ const Posts = () => {
       {post.length ? (
         <>
           {post.map((item) => (
-            <PostCard key={item._id} item={item} />
+            <PostCard key={item._id} item={item} uri={uri} />
           ))}
         </>
       ) : (

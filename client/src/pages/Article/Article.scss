@@ -16,6 +16,9 @@
   h2 {
     font-family: var(--font-base);
   }
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
 }
 .app__article-img {
   max-height: 200px;

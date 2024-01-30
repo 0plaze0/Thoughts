@@ -79,7 +79,6 @@ const Edit = () => {
         withCredentials: true,
       });
       if (result.status === 200) navigate("/");
-      //if (result.status === 200) navigate("/");
     } catch (err) {
       console.log(err);
     }
@@ -114,7 +113,7 @@ const Edit = () => {
           formats={formats}
         />
         <div className="app__createPost-btn">
-          <button className="app__createPost-post">Edit</button>
+          <button className="app__createPost-post">Submit</button>
         </div>
       </form>
     </div>

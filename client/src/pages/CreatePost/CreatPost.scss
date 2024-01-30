@@ -13,6 +13,9 @@
   align-items: center;
   gap: 1.5rem;
   background-color: var(--primary-color);
+  @media screen and (max-width: 900px) {
+    max-width: 100%;
+  }
 }
 .app__createPost-form {
   flex: 1;
@@ -36,6 +39,9 @@
 
     &::placeholder {
       color: gray;
+    }
+    @media screen and (max-width: 900px) {
+      padding: 4px;
     }
   }
   input[type="file"] {
