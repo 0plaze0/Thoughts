@@ -96,7 +96,9 @@ const CreatePost = () => {
           modules={modules}
           formats={formats}
         />
-        <button>Post</button>
+        <div className="app__createPost-btn">
+          <button className="app__createPost-post">Post</button>
+        </div>
       </form>
     </div>
   );

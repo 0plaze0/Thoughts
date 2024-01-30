@@ -22,12 +22,33 @@
     height: auto;
   }
 }
+
 .app__navbar-links {
   flex: 1;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 1.5rem;
+  .app__navbar-create {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+    border: 1px solid transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      border: 1px solid var(--green-color);
+    }
+
+    a {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--green-color);
+    }
+  }
   li {
     padding: 0.5rem 1.5rem;
     list-style: none;

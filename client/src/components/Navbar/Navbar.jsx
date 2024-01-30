@@ -50,8 +50,8 @@ const Navbar = () => {
             <li>
               <a className="app__navbar-user">{`Hey, ${username}`}</a>
             </li>
-            <li>
-              <Link to="/createPost">Create Post</Link>
+            <li className="app__navbar-create">
+              <Link to="/createPost">+</Link>
             </li>
             <li>
               <a onClick={logout}>logout</a>

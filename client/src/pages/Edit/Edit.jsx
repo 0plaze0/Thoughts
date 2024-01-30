@@ -113,7 +113,9 @@ const Edit = () => {
           modules={modules}
           formats={formats}
         />
-        <button>Edit</button>
+        <div className="app__createPost-btn">
+          <button className="app__createPost-post">Edit</button>
+        </div>
       </form>
     </div>
   );
