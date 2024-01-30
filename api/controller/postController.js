@@ -51,4 +51,38 @@ const getArticle = async (req, res) => {
     return res.status(500).json(err.message);
   }
 };
-export default { createPost, getPost, getArticle };
+const editPost = async (req, res) => {
+  let newPath = null;
+  if (req.file) {
+    const { originalname, path } = req.file;
+    const ext = getExtension(originalname);
+    newPath = path + "." + ext;
+    fs.renameSync(path, newPath);
+  }
+
+  const { title, summary, content } = req.body;
+  const { id } = req.params;
+  const tokenData = await jwt.verify(
+    req.cookies["access-token"],
+    process.env.ACCESS_TOKEN_SECRET
+  );
+  try {
+    const dbResult = await Post.findById(id);
+    const isAuthor =
+      JSON.stringify(dbResult.author) == JSON.stringify(tokenData.id);
+
+    if (!isAuthor) {
+      return res.status(400).json("You are not author");
+    }
+    const result = await Post.findByIdAndUpdate(id, {
+      title,
+      summary,
+      content,
+      cover: newPath ? newPath : dbResult.cover,
+    });
+    return res.status(200).json(result);
+  } catch (err) {
+    return res.status(500).json(err.message);
+  }
+};
+export default { createPost, getPost, getArticle, editPost };
