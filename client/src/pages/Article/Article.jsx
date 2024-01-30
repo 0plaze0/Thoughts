@@ -34,7 +34,7 @@ const Article = () => {
   const handleDelete = async (e) => {
     e.preventDefault();
     try {
-      await api.delete(`/post/${id}`);
+      await api.delete(`/post/${id}`, { withCredentials: true });
     } catch (err) {
       console.log(err.message);
     }
