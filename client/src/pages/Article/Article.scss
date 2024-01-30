@@ -59,13 +59,30 @@
     font-size: 0.7rem;
   }
 }
-.app__article-edit {
-  margin: 0.5rem 0rem;
-  padding: 0.25rem 1rem;
-  font-family: var(--font-base);
-  border: transparent;
-  background-color: var(--secondary-color);
-  color: var(--white-color);
-  font-weight: 500;
-  border-radius: 0.5rem;
+
+.app__article-button {
+  display: flex;
+  gap: 0.25rem;
+  .app__article-edit {
+    margin: 0.5rem 0rem;
+    padding: 0.25rem 1rem;
+    font-family: var(--font-base);
+    border: transparent;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    font-weight: 500;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+  .app__article-delete {
+    margin: 0.5rem 0rem;
+    padding: 0.25rem 1rem;
+    font-family: var(--font-base);
+    border: transparent;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    font-weight: 500;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
 }

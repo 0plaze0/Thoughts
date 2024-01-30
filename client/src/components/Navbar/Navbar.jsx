@@ -48,7 +48,10 @@ const Navbar = () => {
         {username && (
           <>
             <li>
-              <Link to="/createPost">{username}</Link>
+              <a className="app__navbar-user">{`Hey, ${username}`}</a>
+            </li>
+            <li>
+              <Link to="/createPost">Create Post</Link>
             </li>
             <li>
               <a onClick={logout}>logout</a>

@@ -10,5 +10,6 @@ router
 router
   .route("/:id")
   .get(postController.getArticle)
-  .put(upload.single("file"), postController.editPost);
+  .put(upload.single("file"), postController.editPost)
+  .delete(postController.deletePost);
 export default router;

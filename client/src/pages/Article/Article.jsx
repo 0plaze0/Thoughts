@@ -31,6 +31,15 @@ const Article = () => {
     e.preventDefault();
     navigate(`/edit/${id}`);
   };
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    try {
+      await api.delete(`/post/${id}`);
+    } catch (err) {
+      console.log(err.message);
+    }
+    navigate("/");
+  };
 
   return (
     <div className="app__article">
@@ -47,9 +56,14 @@ const Article = () => {
           </time>
         </div>
         {userInfo.id === data?.author?._id && (
-          <button className="app__article-edit" onClick={handleEdit}>
-            Edit
-          </button>
+          <div className="app__article-button">
+            <button className="app__article-edit" onClick={handleEdit}>
+              Edit
+            </button>
+            <button className="app__article-delete" onClick={handleDelete}>
+              Delete
+            </button>
+          </div>
         )}
         <div className="app__article-img">
           <img src={`http://localhost:5555/${data.cover}`} alt="photo" />

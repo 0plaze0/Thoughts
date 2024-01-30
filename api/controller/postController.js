@@ -85,4 +85,13 @@ const editPost = async (req, res) => {
     return res.status(500).json(err.message);
   }
 };
-export default { createPost, getPost, getArticle, editPost };
+const deletePost = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await Post.findByIdAndDelete(id);
+    return res.status(200).json(result);
+  } catch (err) {
+    return res.status(500).json(err.message);
+  }
+};
+export default { createPost, getPost, getArticle, editPost, deletePost };
