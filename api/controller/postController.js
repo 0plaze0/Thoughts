@@ -12,6 +12,7 @@ const createPost = async (req, res) => {
   const newPath = path + "." + ext;
   fs.renameSync(path, newPath);
 
+  console.log(req.body)
   const tokenData = await jwt.verify(
     req.cookies["access-token"],
     process.env.ACCESS_TOKEN_SECRET
