@@ -103,7 +103,10 @@ const Article = () => {
           </div>
         )}
         <div className="app__article-img">
-          <img src={`http://localhost:5555/${data.cover}`} alt="photo" />
+          <img
+            src={`${import.meta.env.VITE_BASE_API}${data.cover}`}
+            alt="photo"
+          />
         </div>
         <div className="app__article-text">
           <div dangerouslySetInnerHTML={{ __html: data.content }} />
