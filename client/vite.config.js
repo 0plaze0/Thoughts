@@ -7,4 +7,9 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ["date-fns"],
   },
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: ["./src/config/testSetup.jsx"],
+  },
 });
