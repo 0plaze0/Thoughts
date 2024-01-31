@@ -45,6 +45,10 @@ const Login = () => {
         });
     }
   };
+  const handleDemo = () => {
+    setUsername("demo");
+    setPassword("demo");
+  };
 
   return (
     <div className="app__login">
@@ -72,6 +76,9 @@ const Login = () => {
           />
           <button type="button" onClick={handleSubmit}>
             Login
+          </button>
+          <button type="button" onClick={handleDemo}>
+            Demo
           </button>
         </form>
       </div>
