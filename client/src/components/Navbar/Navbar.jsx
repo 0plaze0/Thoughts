@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from "react";
 import { HiMenuAlt4, HiX } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { api } from "./../../services/api";
+import { useSnackbar } from "notistack";
+
 import "./Navbar.scss";
 import { image } from "./../../constants";
 import { Link } from "react-router-dom";
@@ -10,7 +12,8 @@ import { UserContext } from "../../context/userContext";
 const Navbar = () => {
   // const [username, setUsername] = useState("");
   const { userInfo, setUserInfo } = useContext(UserContext);
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,6 +36,10 @@ const Navbar = () => {
           withCredentials: true,
         }
       );
+      enqueueSnackbar(`😢 Bye, ${username} `, {
+        variant: "success",
+        autoHideDuration: 2000,
+      });
     } catch (err) {
       console.log(err.message);
     }

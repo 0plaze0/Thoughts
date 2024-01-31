@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 import { UserContext } from "../../context/userContext";
 import { api } from "../../services/api";
@@ -10,6 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const { setUserInfo } = useContext(UserContext);
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,12 +26,23 @@ const Login = () => {
       );
       if (result.status === 200) {
         setUserInfo(result.data);
+        enqueueSnackbar(`Hello ${username}`, {
+          variant: "success",
+          autoHideDuration: 2000,
+        });
         navigate("/");
       }
     } catch (err) {
       if (err.response.status === 401) {
-        alert("wrong credentials");
-      } else alert(err.message);
+        enqueueSnackbar(`Invalid credential`, {
+          variant: "error",
+          autoHideDuration: 2000,
+        });
+      } else
+        enqueueSnackbar(err.message, {
+          variant: "error",
+          autoHideDuration: 2000,
+        });
     }
   };
 

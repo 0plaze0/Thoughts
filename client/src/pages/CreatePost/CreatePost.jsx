@@ -2,6 +2,7 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 import { api } from "./../../services/api";
 
@@ -45,6 +46,7 @@ const CreatePost = () => {
   const [content, setContent] = useState("");
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
   const createPost = async (e) => {
     e.preventDefault();
@@ -61,9 +63,16 @@ const CreatePost = () => {
         },
         withCredentials: true,
       });
-      if (result.status === 200) navigate("/");
+      if (result.status === 200) {
+        enqueueSnackbar("Book added successfully", {
+          variant: "success",
+          autoHideDuration: 2000,
+        });
+        navigate("/");
+      }
     } catch (err) {
       console.log(err);
+      enqueueSnackbar("Error", { variant: "error" });
     }
   };
 

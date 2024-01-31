@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { useSnackbar } from "notistack";
 import { api } from "./../../services/api";
 
 import "./Edit.scss";
@@ -46,6 +46,7 @@ const Edit = () => {
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
   const { id } = useParams();
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,9 +79,19 @@ const Edit = () => {
         },
         withCredentials: true,
       });
-      if (result.status === 200) navigate("/");
+      if (result.status === 200) {
+        enqueueSnackbar("Book edited successfully", {
+          variant: "success",
+          autoHideDuration: 2000,
+        });
+        navigate("/");
+      }
     } catch (err) {
       console.log(err);
+      enqueueSnackbar("Error", {
+        variant: "error",
+        autoHideDuration: 1000,
+      });
     }
   };
   return (

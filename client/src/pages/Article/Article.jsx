@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 import { UserContext } from "./../../context/userContext";
 import { api } from "../../services/api";
@@ -10,7 +11,7 @@ const Article = () => {
   const [data, setData] = useState({});
   const { userInfo } = useContext(UserContext);
   const navigate = useNavigate();
-
+  const { enqueueSnackbar } = useSnackbar();
   const params = useParams();
   const { id } = params;
   useEffect(() => {
@@ -35,10 +36,18 @@ const Article = () => {
     e.preventDefault();
     try {
       await api.delete(`/post/${id}`, { withCredentials: true });
+      enqueueSnackbar("Book deleted successfully", {
+        variant: "success",
+        autoHideDuration: 2000,
+      });
+      navigate("/");
     } catch (err) {
       console.log(err.message);
+      enqueueSnackbar("Error", {
+        variant: "error",
+        autoHideDuration: 1000,
+      });
     }
-    navigate("/");
   };
 
   return (

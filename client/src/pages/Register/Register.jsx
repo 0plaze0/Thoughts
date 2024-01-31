@@ -1,11 +1,14 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import "./Register.scss";
 import { api } from "../../services/api";
+import { useSnackbar } from "notistack";
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,9 +17,18 @@ const Register = () => {
         username: username,
         password: password,
       });
-      if (result.status === 200) alert("User register succesfully");
+      if (result.status === 200) {
+        enqueueSnackbar(`User Register Successfully`, {
+          variant: "success",
+          autoHideDuration: 2000,
+        });
+        navigate("/");
+      }
     } catch (err) {
-      alert(err.message);
+      enqueueSnackbar(`Error`, {
+        variant: "error",
+        autoHideDuration: 2000,
+      });
     }
   };
   return (
