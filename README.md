@@ -1,4 +1,4 @@
-# Thougts
+# Thoughts
 
 <div align='center'>
 
