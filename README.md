@@ -43,7 +43,8 @@ A blogging platform to share your insights and expertise with others.
 
 <div>
 
-[Demo Video](https://youtu.be/ZEleDqeG9y4?si=EVjmPuJ1DqrtD5X7)
+[Demo Video](https://youtu.be/lQNTVGgi7wo)
+
 
 #### Features
 
